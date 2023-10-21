@@ -2,20 +2,19 @@
 NAME	=	libft.a
 
 SRCS	=	ft_isalpha.c	\
-		ft_strlen.c	\
-		ft_isprint.c	\
-		ft_isdigit.c	\
-		ft_isalnum.c	\
-		ft_isascii.c	\
-		ft_toupper.c	\
-		ft_tolower.c	\
-		ft_strncmp.c	\
-		ft_strchr.c	\
-		ft_strrchr.c	\
-		ft_bzero.c	\
-		ft_strnstr.c	\
-		ft_strlcat.c	\
-		../main.c
+			ft_strlen.c		\
+			ft_isprint.c	\
+			ft_isdigit.c	\
+			ft_isalnum.c	\
+			ft_isascii.c	\
+			ft_toupper.c	\
+			ft_tolower.c	\
+			ft_strncmp.c	\
+			ft_strchr.c		\
+			ft_strrchr.c	\
+			ft_bzero.c		\
+			ft_strnstr.c	\
+			ft_strlcat.c	
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -31,7 +30,7 @@ all	:
 		@make $(NAME)
 
 $(NAME)	:	$(OBJS)
-		$(CC) -o  $(NAME) $(OBJS) -lbsd
+		$(CC) -o  $(NAME) $(OBJS)
 
 clean	:	
 		$(RM) $(OBJS)

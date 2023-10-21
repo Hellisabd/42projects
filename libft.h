@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <string.h>
-# include <bsd/string.h>
+//# include <bsd/string.h>
 # include <ctype.h>
 
 int		ft_isalpha(int c);
