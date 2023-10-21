@@ -22,4 +22,4 @@ int main(void)
     char *dest[10];
     printf("ma fonction : %s\n", ft_memcpy(dest, src, 7));
     printf("sa fonction : %s\n", memcpy(dest, src, 7));
-} 
+}
