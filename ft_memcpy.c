@@ -8,7 +8,7 @@ void    *ft_memcpy(void *dest, const void *src, size_t n)
 
     s = (const char *)src;
     d = (char *)dest;
-    while (i < n && src[i] != '\0')
+    while (i < n && s[i] != '\0')
     {
         d[i] = s[i];
         i++; 
@@ -21,5 +21,5 @@ int main(void)
     const char *src = "bonjour";
     char *dest[10];
     printf("ma fonction : %s\n", ft_memcpy(dest, src, 7));
-    printf("ma fonction : %s\n", memcpy(dest, src, 7));
+    printf("sa fonction : %s\n", memcpy(dest, src, 7));
 } 
