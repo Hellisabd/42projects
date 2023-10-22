@@ -7,7 +7,7 @@ void    *ft_memmove(void *dest, const void *src, size_t n)
     size_t  i;
     
     i = 0;
-    s = (const char *)src;
+    s = (char *)src;
     d = (char *)dest;
     if (d > s)
     {
@@ -33,7 +33,7 @@ void    *ft_memmove(void *dest, const void *src, size_t n)
 int main(void)
 {
     const char *src = "bonjour";
-    char *dest = "bonjoubonjour";
-    printf("ma fonction : %s\n", ft_memmove(dest, src, 7));
-    printf("sa fonction : %s\n", memmove(dest, src, 7));
+    //char *dest = "bonjoubonjour";
+    printf("ma fonction : %p\n", ft_memmove("bonjoubonjour", src, 7));
+    printf("sa fonction : %p\n", memmove("bonjoubonjour", src, 7));
 }
