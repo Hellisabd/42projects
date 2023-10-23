@@ -42,7 +42,7 @@ char **ft_split(char const *s, char c)
     char    **res;
     int     j;
     size_t  i;
-    size_t  h;
+    int     h;
 
     i = 0;
     h = -1;
@@ -60,6 +60,7 @@ char **ft_split(char const *s, char c)
             }
             i++;
         }
+        return (res);
 }
 
 int main(void)
