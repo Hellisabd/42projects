@@ -26,7 +26,8 @@ SRCS	=	ft_isalpha.c	\
 		ft_itoa.c	\
 		ft_strdup.c	\
 		ft_strlcpy.c	\
-		ft_calloc.c			
+		ft_calloc.c	\
+		ft_substr		
 
 OBJS	=	$(SRCS:.c=.o)
 
