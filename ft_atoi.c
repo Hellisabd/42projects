@@ -30,7 +30,7 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] <= '9' && nptr[i] >= '0')
 	{
 		res *= 10;
-		res += nptr[i] -'0';
+		res += nptr[i] - '0';
 		i++;
 	}
 	return ((int)sign * res);
