@@ -1,25 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 14:04:09 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/10/24 14:17:32 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void    *ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-    size_t  i;
-    char *d;
-    const char *s;
+	unsigned char	*oct1;
+	unsigned char	*oct2;
 
-    s = (const char *)src;
-    d = (char *)dest;
-    while (i < n && s[i] != '\0')
-    {
-        d[i] = s[i];
-        i++; 
-    }
-    return (d);
-}
-
-int main(void)
-{
-    const char *src = "bonjour";
-    char *dest[10];
-    printf("ma fonction : %s\n", ft_memcpy(dest, src, 7));
-    printf("sa fonction : %s\n", memcpy(dest, src, 7));
+	if (dst == src || n == 0)
+		return (dst);
+	oct1 = (unsigned char*)dst;
+	oct2 = (unsigned char*)src;
+	while (n--)
+		*oct1++ = *oct2++;
+	return (dst);
 }

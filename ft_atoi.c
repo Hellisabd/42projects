@@ -1,29 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 15:27:58 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/10/24 14:15:03 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
-    size_t  i;
-    int     sign;
-    long int     res;
+	int		sign;
+	size_t	res;
+	size_t	i;
 
-    i = 0;
-    sign = 1;
-    res = 0;
-    while (nptr[i] != '\0' || (nptr[i] == ' ' && (nptr[i] >= 9 && nptr[i] <= 13)))
-        i++;
-    if (nptr[i] == '+')
-        i++;
-    if (nptr[i] == '-')
-        {
-            i++;
-            sign = -1;
-        }
-    while (nptr[i] <= 9 && nptr[i] >= 0)
-    {
-        res = res * 10 + (nptr[i] - 48);
-        i++;
-    }
-    if (res == 2147483648)
-        return (-2147483648);
-    return ((int)res * sign);
+	sign = 1;
+	i = 0;
+	res = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-')
+		sign = -1;
+	if (nptr[i] == '+' || nptr[i] == '-')
+		i++;
+	while (nptr[i] <= '9' && nptr[i] >= '0')
+	{
+		res *= 10;
+		res += nptr[i] -'0';
+		i++;
+	}
+	return ((int)sign * res);
 }

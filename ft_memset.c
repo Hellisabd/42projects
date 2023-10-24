@@ -1,27 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 13:12:15 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/10/24 14:21:06 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void    *ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *b, int c, size_t n)
 {
-    size_t              i;
-    unsigned char    *str;
+	unsigned char	*str;
 
-    i = 0;
-    str = (char *)s;
-    while (i < n)
-    {
-        str[i] = c;
-        printf("%zu : %d\n", i, str[i]);
-        i++;
-    }
-    return (s);
-}
-
-int main(void)
-{
-    char tab[15];
-    printf("ft_memset : %d\n", ft_memset(tab, 'a', sizeof (char) * 15));
-    printf("memset : %d\n", memset(tab, 'a', sizeof (char) * 15));
-    for (size_t i = 0; i < sizeof tab / sizeof tab[0]; ++i)
-		printf("%zu : %d\n", i, tab[i]);
-    return (0);
+	str = (unsigned char *)b;
+	while (n--)
+		*str++ = (unsigned char)c;
+	return (b);
 }

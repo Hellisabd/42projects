@@ -1,39 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/23 14:11:52 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/10/24 14:20:09 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void    *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-    char    *s;
-    char    *d;
-    size_t  i;
-    
-    i = 0;
-    s = (char *)src;
-    d = (char *)dest;
-    if (d > s)
-    {
-        while (n > 0)
-        {
-            d[n] = s[n];
-            n--;
-        }
-        d[n] = s[n];
-        return (d);
-    }
-    else
-    {
-        while (i < n)
-        {
-            d[i] = s[i];
-            i++;
-        }
-    }
-    return (dest);
-}
+	char	*s;
+	char	*d;
+	size_t	i;
 
-int main(void)
-{
-    const char *src = "bonjour";
-    //char *dest = "bonjoubonjour";
-    printf("ma fonction : %p\n", ft_memmove("bonjoubonjour", src, 7));
-    printf("sa fonction : %p\n", memmove("bonjoubonjour", src, 7));
+	s = (char *)src;
+	d = (char *)dst;
+	i = 0;
+	if (d > s)
+		while (len-- > 0)
+			d[len] = s[len];
+	else
+		while (i < len)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	return (dst);
 }

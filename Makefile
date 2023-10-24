@@ -15,7 +15,12 @@ SRCS	=	ft_isalpha.c	\
 		ft_bzero.c	\
 		ft_strnstr.c	\
 		ft_strlcat.c	\
-		ft_strlcpy.c
+		ft_memset.c	\
+		ft_memcpy.c	\
+		ft_memchr.c	\
+		ft_memmove.c	\
+		ft_memcmp.c	\
+		ft_atoi.c	
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -25,14 +30,11 @@ CFLAGS += 	-Wall -Wextra -Werror
 
 RM	=	rm -f
 
-CLEAN	=	clean
-
 all	:	
 		@make $(NAME)
 
 $(NAME)	:	$(OBJS)
 		-ar -crs  $(NAME) $(OBJS)
-
 clean	:	
 		$(RM) $(OBJS)
 
