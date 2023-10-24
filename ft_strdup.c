@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/10/19 12:14:45 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 char    *ft_strdup(const char *s)
 {
@@ -23,9 +25,4 @@ char    *ft_strdup(const char *s)
         i++;
     }
     return (dest);
-}
-
-int     main(void)
-{
-    printf ("%s", ft_strdup("bonjour"));
 }
