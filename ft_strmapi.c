@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 14:49:43 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/25 11:51:28 by bgrosjea         ###   ########.fr       */
+/*   Created: 2023/10/25 14:05:08 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/10/25 15:34:03 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t			i;
-	unsigned char	*str1;
-	unsigned char	*str2;
+	char	*str;
+	size_t	i;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
 	i = 0;
-	while (i < n && *(str1 + i) == *(str2 + i))
+	if (!s || !f)
+		return (NULL);
+	str = (char *)malloc(sizeof (char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
 		i++;
-	if (i == n)
-		return (0);
-	return ((*str1 + i) - *(str2 + i));
+	}
+	str[i] = '\0';
+	return (str);
 }

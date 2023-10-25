@@ -27,7 +27,10 @@ SRCS	=	ft_isalpha.c	\
 		ft_strdup.c	\
 		ft_strlcpy.c	\
 		ft_calloc.c	\
-		ft_substr		
+		ft_substr.c	\
+		ft_strtrim.c	\
+		ft_strmapi.c	\
+		ft_striteri.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -41,7 +44,7 @@ all	:
 		@make $(NAME)
 
 $(NAME)	:	$(OBJS)
-		-ar -crs  $(NAME) $(OBJS)
+		ar -crs $(NAME) $(OBJS)
 clean	:	
 		$(RM) $(OBJS)
 
