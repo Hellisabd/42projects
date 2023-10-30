@@ -17,7 +17,7 @@ size_t	ft_getstart(const char *s1, const char *set)
 	size_t	i;
 
 	i = 0;
-	while (i < ft_strlen(set))
+	while (i < ft_strlen(s1))
 	{
 		if (ft_strchr(set, s1[i]) == 0)
 			break ;

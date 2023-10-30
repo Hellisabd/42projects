@@ -18,8 +18,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	i;
 	size_t	a;
 
-	if (!(dest = (char *)malloc(sizeof (char) * (ft_strlen(s2) + ft_strlen(s1) + 1))))
-		return (0);
+	dest = (char *)malloc(sizeof (char) * (ft_strlen(s2) + ft_strlen(s1) + 1));
+	if (!dest)
+		return (NULL);
 	i = 0;
 	a = 0;
 	while (s1[i] != '\0')

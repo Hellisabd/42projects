@@ -14,33 +14,17 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long	l_n;
-	int	div;
-	int	t;
-	int	res;
-
-	div = 100000000;
-	res = 0;
-	t = 0;
-	l_n = n;
-	if (n < 0)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else
 	{
-		write (fd, "-", 1);
-		l_n = (long)-n;
+		if (n < 0)
+		{
+			ft_putchar_fd('-', fd);
+			n *= -1;
+		}
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd((n % 10) + '0', fd);
 	}
-	while (div > 0)
-	{
-		res = l_n / div;
-		res = res % 10 + '0';
-		if (res > '0')
-			t = 1;
-		if (t == 1)
-			write (fd, &res, 1);
-		div /= 10;
-	}
-}
-
-int	main()
-{
-	ft_putnbr_fd(355524, 1);
 }
