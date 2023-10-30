@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/19 12:14:45 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:44:18 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,74 +21,68 @@ size_t	count_words(char const *s, char c)
 	j = 0;
 	while (*s)
 	{
-		if (*s != c && i == 0)
+		if (*s != c && j == 0)
 		{
-			i = 1;
-			j++;
+			j = 1;
+			i++;
 		}
 		else if (*s == c)
-			i = 0;
+			j = 0;
 		s++;
 	}
-	return (j);
+	return (i);
 }
 
-char	*fill_dest(char const *s, size_t start, size_t finish)
+char	*fill_dest(char const *s, var *Var)
 {
 	char	*dest;
-	size_t	i;
+	int		i;
 
 	i = 0;
-	dest = (char *)malloc(sizeof (char) * (start - finish + 1));
+	dest = (char *)malloc(sizeof (char) * (Var->h - Var->i + 1));
 	if (!dest)
 		return (NULL);
-	while (start < finish)
-	{
-		dest[i++] = s[start++];
-	}
+	while (i < Var->h)
+		dest[i++] = s[Var->i++];
 	dest[i] = '\0';
 	return (dest);
+}
+
+int	free_split(char **res, int j)
+{	
+	while (j >= 0)
+	{
+		free (res[j]);
+		j--;
+	}
+	free (res);
+	return(0);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	int		j;
-	size_t	i;
-	int		h;
+	var 	*Var;
 
-	i = 0;
-	h = -1;
-	j = 0;
-	res = malloc((count_words(s, c) + 1) * sizeof(char *));
+	Var->i = 0;
+	Var->h = -1;
+	Var->j = 0;
+	res = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!res)
 		return (0);
-	while (i <= ft_strlen(s))
+	while (Var->i <= ft_strlen(s))
 	{
-		if (s[i] != c && h < 0)
-			h = i;
-		else if ((s[i]) == c || (i == ft_strlen(s) && h >= 0))
+		if (s[Var->i] != c && Var->h < 0)
+			Var->h = Var->i;
+		else if ((s[Var->i] == c || Var->i == ft_strlen(s)) && Var->h >= 0)
 		{
-			res[j] = fill_dest(s, h, i);
-			h = -1;
-			j++;
+			res[Var->j] = fill_dest(s, Var);
+			if (!res[Var->j++] && free_split(res, Var->j-1) == 0)
+				return (NULL);
+			Var->h = -1;
 		}
-		i++;
+		Var->i++;
 	}
-	res[j] = 0;
+	res[Var->j] = 0;
 	return (res);
-}
-
-int	main(void)
-{
-	char const *s = "bonjour je m appelle basile";
-	char **tab;
-	tab = ft_split(s, ' ');
-	int	i;
-	i = 0;
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
 }

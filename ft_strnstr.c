@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:29:35 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/23 13:03:13 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/10/30 13:25:24 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	j = 0;
 	if (little[i] == '\0')
 		return ((char *)big);
-	while (i < len)
+	while (big[i] != '\0')
 	{
-		while (big[i] == little[j] && i < len)
+		j = 0;
+		while (big[i + j] == little[j] && (i + j) < len)
 		{
-			if (little[j + 1] == '\0' && big[i] == little[j])
-				return ((char *) big + (i - j));
-			i++;
+			if (big[i + j] == '\0' && little[j] == '\0')
+				return ((char *) big + i);
 			j++;
 		}
+		if (little[j] == '\0')
+			return ((char *)big + i);
 		i++;
-		j = 0;
 	}
 	return (0);
 }

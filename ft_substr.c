@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/19 12:14:45 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/10/30 14:16:37 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*dest;
 	size_t	i;
 
-	i = 0;
-	if (ft_strlen(s) < start)
-	{
-		dest = malloc(sizeof(char) * 1);
-		if (!dest)
-			return (NULL);
-		dest[0] = '\0';
-		return (dest);
-	}
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	i = ft_strlen(s + start);
+	if (i < len)
+		len = i;
 	dest = (char *)malloc(sizeof (char) * (len + 1));
 	if (!dest)
 		return (NULL);
-	while (i < len)
-	{
-		dest[i] = s[start + i];
-		i++;
-	}
-	dest[i] = '\0';
+	ft_strlcpy(dest, s + start, len + 1);
 	return (dest);
 }
