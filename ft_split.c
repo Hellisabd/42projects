@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/30 15:44:18 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:27:52 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@ size_t	count_words(char const *s, char c)
 	return (i);
 }
 
-char	*fill_dest(char const *s, var *Var)
+char	*fill_dest(char const *s, struct s_marche var)
 {
 	char	*dest;
 	int		i;
 
 	i = 0;
-	dest = (char *)malloc(sizeof (char) * (Var->h - Var->i + 1));
+	dest = (char *)malloc(sizeof(char) * (var.i - var.h + 1));
 	if (!dest)
 		return (NULL);
-	while (i < Var->h)
-		dest[i++] = s[Var->i++];
+	while ((size_t)var.h < var.i)
+	{
+		dest[i] = s[var.h];
+		var.h++;
+		i++;
+	}
 	dest[i] = '\0';
 	return (dest);
 }
@@ -56,33 +60,33 @@ int	free_split(char **res, int j)
 		j--;
 	}
 	free (res);
-	return(0);
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**res;
-	var 	*Var;
+	char			**res;
+	struct s_marche	var;
 
-	Var->i = 0;
-	Var->h = -1;
-	Var->j = 0;
+	var.j = 0;
+	var.h = -1;
+	var.i = 0;
 	res = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!res)
 		return (0);
-	while (Var->i <= ft_strlen(s))
+	while (var.i <= ft_strlen(s))
 	{
-		if (s[Var->i] != c && Var->h < 0)
-			Var->h = Var->i;
-		else if ((s[Var->i] == c || Var->i == ft_strlen(s)) && Var->h >= 0)
+		if (s[var.i] != c && var.h < 0)
+			var.h = var.i;
+		else if ((s[var.i] == c || var.i == ft_strlen(s)) && var.h >= 0)
 		{
-			res[Var->j] = fill_dest(s, Var);
-			if (!res[Var->j++] && free_split(res, Var->j-1) == 0)
+			res[var.j] = fill_dest(s, var);
+			if (!res[var.j++] && free_split(res, var.j - 1) == 0)
 				return (NULL);
-			Var->h = -1;
+			var.h = -1;
 		}
-		Var->i++;
+		var.i++;
 	}
-	res[Var->j] = 0;
+	res[var.j] = 0;
 	return (res);
 }
