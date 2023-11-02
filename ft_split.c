@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/31 12:27:52 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/11/01 16:29:35 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,14 @@ char	**ft_split(char const *s, char c)
 	char			**res;
 	struct s_marche	var;
 
+	if (!s)
+		return (NULL);
 	var.j = 0;
 	var.h = -1;
 	var.i = 0;
 	res = (char **)malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!res)
-		return (0);
+		return (NULL);
 	while (var.i <= ft_strlen(s))
 	{
 		if (s[var.i] != c && var.h < 0)
@@ -89,4 +91,9 @@ char	**ft_split(char const *s, char c)
 	}
 	res[var.j] = 0;
 	return (res);
+}
+
+int	main(void)
+{
+	ft_split(NULL, 'c');
 }

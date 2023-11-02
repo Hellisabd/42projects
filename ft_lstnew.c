@@ -1,13 +1,13 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/02 13:41:59 by bgrosjea          #+#    #+#             */
+/*   Updated: 2023/11/02 13:42:36 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_list	*ft_lstnew(void *content)
-{
-	t_list	*s_list;
 
-	s_list = malloc(sizeof(*s_list));
-	if (!s_list)
-		return (NULL);
-	s_list->content = content;
-	s_list->next = NULL;
-	return (s_list);
-}
