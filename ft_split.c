@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/11/02 16:12:09 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:09:15 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,19 @@ size_t	count_words(char const *s, char c)
 	return (i);
 }
 
-char	*fill_dest(char const *s, struct s_marche var)
+char	*fill_dest(char const *s, t_marche *var)
 {
 	char	*dest;
 	int		i;
 
 	i = 0;
-	dest = (char *)malloc(sizeof(char) * (var.i - var.h + 1));
+	dest = (char *)malloc(sizeof(char) * (var->i - var->h + 1));
 	if (!dest)
 		return (NULL);
-	while ((size_t)var.h < var.i)
+	while ((size_t)var->h < var->i)
 	{
-		dest[i] = s[var.h];
-		var.h++;
+		dest[i] = s[var->h];
+		var->h++;
 		i++;
 	}
 	dest[i] = '\0';
@@ -63,10 +63,25 @@ int	free_split(char **res, int j)
 	return (0);
 }
 
+static	int	ft_splitsplit(char const *s, char c, t_marche *var, char **res)
+{
+	if (s[var->i] != c && var->h < 0)
+		var->h = var->i;
+	else if ((s[var->i] == c || var->i == ft_strlen(s)) && var->h >= 0)
+	{
+		res[var->j] = fill_dest(s, var);
+		if (!res[var->j++] && free_split(res, var->j - 1) == 0)
+			return (0);
+		var->h = -1;
+	}
+	var->i++;
+	return (1);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	char			**res;
-	struct s_marche	var;
+	char		**res;
+	t_marche	var;
 
 	if (!s)
 		return (NULL);
@@ -78,22 +93,9 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (var.i <= ft_strlen(s))
 	{
-		if (s[var.i] != c && var.h < 0)
-			var.h = var.i;
-		else if ((s[var.i] == c || var.i == ft_strlen(s)) && var.h >= 0)
-		{
-			res[var.j] = fill_dest(s, var);
-			if (!res[var.j++] && free_split(res, var.j - 1) == 0)
-				return (NULL);
-			var.h = -1;
-		}
-		var.i++;
+		if (ft_splitsplit(s, c, &var, res) == 0)
+			return (NULL);
 	}
 	res[var.j] = 0;
 	return (res);
 }
-
-/*int	main(void)
-{
-	ft_split(NULL, 'c');
-}*/
