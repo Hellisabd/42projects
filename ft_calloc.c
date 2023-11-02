@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/25 19:08:20 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/11/02 17:15:53 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*tab;
-	int		i;
+	size_t	i;
 
 	i = nmemb * size;
 	if (i > INT_MAX)

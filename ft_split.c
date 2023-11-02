@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 13:41:59 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/11/01 16:29:35 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/11/02 16:12:09 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**ft_split(char const *s, char c)
 	return (res);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	ft_split(NULL, 'c');
-}
+}*/
