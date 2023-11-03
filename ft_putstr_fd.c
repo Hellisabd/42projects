@@ -6,7 +6,7 @@
 /*   By: bgrosjea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 16:19:07 by bgrosjea          #+#    #+#             */
-/*   Updated: 2023/10/25 16:25:09 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:47:43 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_putstr_fd(char *s, int fd)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return ;
 	while (s[i])
 	{
 		write(fd, &s[i], 1);
